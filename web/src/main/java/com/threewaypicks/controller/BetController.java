@@ -43,6 +43,10 @@ public class BetController {
     @RequestMapping(value = {"/betForm","/betForm/"}, method = RequestMethod.POST)
     public String onFormSubmit(@Valid @ModelAttribute("bet") Bet bet, BindingResult bindResult, Model model)
     {
+        //ToDo clean bindResult errors for deleted picks or
+        //ToDo clean picks if they are empty (deleted)
+        //Todo or else picks will not be displayed correctly
+
         if(bet==null || bet.getPickList()== null || bet.getPickList().size() == 0){
             return "betForm";
         }
@@ -55,6 +59,7 @@ public class BetController {
                 picksForRemove.add(pick);
             }
         }
+
         bet.getPickList().removeAll( picksForRemove);
 
         if(!bindResult.hasErrors()){
