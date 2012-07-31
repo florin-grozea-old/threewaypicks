@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="template-main" template="/WEB-INF/jsp/tilesLayout/main.jsp">
+		<put-attribute name="body"/>
+	</definition>
+
+	<!-- Concrete page. -->
+    <definition name="pickFormTag" template="/WEB-INF/jsp/pickFormTag.jsp">
+    </definition>
+
+	<definition name="bets" extends="template-main">
+		<put-attribute name="body" value="/WEB-INF/jsp/bets.jsp" />
+	</definition>
+
+    <definition name="betForm" extends="template-main">
+        <put-attribute name="body" value="/WEB-INF/jsp/betForm.jsp" />
+    </definition>
+
+    <definition name="mainPage" extends="template-main">
+        <put-attribute name="body" value="/WEB-INF/jsp/mainPage.jsp" />
+    </definition>
+
+</tiles-definitions>
