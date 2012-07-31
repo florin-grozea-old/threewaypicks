@@ -31,6 +31,8 @@ public class BetController {
         return "betForm";
     }
 
+
+    // Test a new commit to git hub.
     /**
      * <p>Called when the user submits the bet form</p>
      */
