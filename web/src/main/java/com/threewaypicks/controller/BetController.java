@@ -1,6 +1,8 @@
 package com.threewaypicks.controller;
 
 import com.threewaypicks.domain.Bet;
+import com.threewaypicks.domain.Pick;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,9 +41,32 @@ public class BetController {
      * <p>Called when the user submits the bet form</p>
      */
     @RequestMapping(value = {"/betForm","/betForm/"}, method = RequestMethod.POST)
-    public String onFormSubmit(@Valid @ModelAttribute("bet") Bet bet, BindingResult result)
+    public String onFormSubmit(@Valid @ModelAttribute("bet") Bet bet, BindingResult bindResult, Model model)
     {
-        return "redirect:/";
+        if(bet==null || bet.getPickList()== null || bet.getPickList().size() == 0){
+            return "betForm";
+        }
+
+        //    Clear pick list of null elements that may contains when
+        //  a pick is removed from the form.
+        List<Pick> picksForRemove = new ArrayList<Pick>();
+        for( Pick pick : bet.getPickList()){
+            if(pick.getSport() == null ){
+                picksForRemove.add(pick);
+            }
+        }
+        bet.getPickList().removeAll( picksForRemove);
+
+        if(!bindResult.hasErrors()){
+            for( Pick pick : bet.getPickList()){
+                pick.setStatus(Pick.Status.IN_PLAY);
+            }
+            return "redirect:/";
+        }
+
+        model.addAttribute("bet", bet);
+        return "betForm";
+
     }
 
     @RequestMapping(value = {"/pickFormTag/{index}", "/pickFormTag/{index}/"}, method = RequestMethod.GET)

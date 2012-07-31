@@ -2,6 +2,8 @@ package com.threewaypicks.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -29,12 +31,13 @@ public class Pick {
     private String league;
 
     @NotEmpty
-    private String Match;
+    private String match;
 
     @NotEmpty
     private String bettingPick;
 
     @NotNull
+    @Min(1) @Max(50)
     private Double odds;
 
     @NotNull
@@ -42,6 +45,14 @@ public class Pick {
 
     @NotEmpty
     private String matchTime;
+
+    public String getMatch() {
+        return match;
+    }
+
+    public void setMatch(String match) {
+        this.match = match;
+    }
 
     public String getMatchTime() {
         return matchTime;
@@ -65,14 +76,6 @@ public class Pick {
 
     public void setLeague(String league) {
         this.league = league;
-    }
-
-    public String getMatch() {
-        return Match;
-    }
-
-    public void setMatch(String match) {
-        Match = match;
     }
 
     public String getBettingPick() {

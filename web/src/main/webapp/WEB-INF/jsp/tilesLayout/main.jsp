@@ -1,7 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ include file="/WEB-INF/jsp/include.jsp" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +31,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/jQuery/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jsHelper.js"></script>
 </head>
 
 <body>
@@ -80,7 +78,6 @@
 
 <div class="container">
     <tiles:insertAttribute name="body"/>
-
     <hr>
     <footer>
         <p>&copy; Three Way Picks 2012</p>

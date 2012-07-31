@@ -1,23 +1,22 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ include file="/WEB-INF/jsp/include.jsp" %>
 
-<form:form class="form-horizontal" name="betForm" id="betForm" commandName="bet"  method="post">
-<div class="row">
-    <h2>
-        <div class="span4 offset1">Place a bet</div>
-    </h2>
+<form:form class="form-horizontal" name="betForm" id="betForm" commandName="bet"  method="post" action="${pageContext.request.contextPath}/bets/betForm">
+        <div class="row">
+        <h2>
+            <div class="span4 offset1">Place a bet</div>
+        </h2>
 
-    <div class="pull-right">
-        <button type="submit" class="btn btn-primary btn-large">Save</button>
-        <button class="btn btn-large">Cancel</button>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary btn-large">Save</button>
+            <button class="btn btn-large">Cancel</button>
+        </div>
+
+        <div class="span10 offset1">
+            Multiple picks on same bet are allowed
+        </div>
+        <div class="span10 offset1">&nbsp</div>
+
     </div>
-
-    <div class="span10 offset1">
-        Multiple picks on same bet are allowed
-    </div>
-    <div class="span10 offset1">&nbsp</div>
-
-</div>
 
     <%--bet header--%>
     <div class="row">
@@ -57,24 +56,24 @@
                     </div>
                 </div>
                 <div class="span1">
-                    <a class="btn jsAddPick" href="#">+</a>
+                    <a class="btn jsAddPick" href="#" id="jsHeaderAddPick">+</a>
                 </div>
             </fieldset>
         </div>
     </div><%--bet header--%>
 
-
-   <%-- <c:forEach var="pick"  varStatus="count" items="${pickList}">
-        <jsp:include page="/WEB-INF/jsp/pickFormTag.jsp">
-            <jsp:param name="index" value="0" />
-        </jsp:include>
-    </c:forEach>--%>
+   <%--<c:out value="${fn:length(bet.pickList)}"/>--%>
+   <c:forEach var="pick"  varStatus="count" items="${bet.pickList}">
+       <%--<c:out value="${bet.pickList[count.index].league}"/>
+       <c:out value="${count.index}"/>--%>
+       <threewaypicks:pickForm pickContainer="pickList" index="${count.index}"/>
+   </c:forEach>
 
 </form:form>
 
 <script type="text/javascript">
     betForm = {};
-    betForm.pickIndex=0;
+    betForm.pickIndex=${fn:length(bet.pickList)};
 
     betForm.getPickTag = function(index,addButton){
         $.get('${pageContext.request.contextPath}/bets/pickFormTag/'+index, function(data){
@@ -88,7 +87,9 @@
     }
 
     $(document).ready(function(){
-        $('.jsAddPick').click();
+        if (betForm.pickIndex == 0 ){
+            $('#jsHeaderAddPick').click();
+        }
     });
 
     $('.jsAddPick').live('click', function(){
