@@ -18,5 +18,11 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <context-param>
+        <param-name>contextInitializerClasses</param-name>
+        <param-value>com.threewaypicks.service.CloudApplicationContextInitializer</param-value>
+    </context-param>
+
 </web-app>
 

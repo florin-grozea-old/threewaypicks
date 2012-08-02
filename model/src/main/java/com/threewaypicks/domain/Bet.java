@@ -1,6 +1,9 @@
 package com.threewaypicks.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -16,22 +19,34 @@ import java.util.List;
  * Date: 7/18/12
  * Time: 1:53 PM
  */
+
+@Document
 public class Bet {
+
+    @Id
+    private String id;
+
+    @DBRef
     private User user;
 
-    @Valid
-    @NotEmpty
+    @Valid @NotEmpty
     private List<Pick> pickList;
 
     @NotEmpty
     private String bookMaker;
 
-    @NotNull
-    @Min(1)
-    @Max(10)
+    @NotNull @Min(1) @Max(10)
     private Integer stake;
 
     private Date date;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Date getDate() {
         return date;

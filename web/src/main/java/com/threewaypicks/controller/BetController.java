@@ -2,8 +2,10 @@ package com.threewaypicks.controller;
 
 import com.threewaypicks.domain.Bet;
 import com.threewaypicks.domain.Pick;
+import com.threewaypicks.service.BetService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -26,8 +28,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/bets")
 public class BetController {
-
     protected static Logger logger = Logger.getLogger(BetController.class);
+
+    @Autowired
+    private BetService betService;
 
     @RequestMapping(value = {"/betForm", "/betForm/"}, method = RequestMethod.GET)
     public String getBetForm(@ModelAttribute("bet") Bet bet) {
@@ -35,8 +39,6 @@ public class BetController {
         return "betForm";
     }
 
-
-    // Test a new commit to git hub.
     /**
      * <p>Called when the user submits the bet form</p>
      */
@@ -66,6 +68,7 @@ public class BetController {
             for( Pick pick : bet.getPickList()){
                 pick.setStatus(Pick.Status.IN_PLAY);
             }
+            betService.addBet(bet);
             return "redirect:/";
         }
 

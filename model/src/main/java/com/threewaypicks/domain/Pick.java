@@ -1,6 +1,8 @@
 package com.threewaypicks.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -14,6 +16,7 @@ import java.util.Date;
  * Time: 1:54 PM
  * To change this template use File | Settings | File Templates.
  */
+
 public class Pick {
 
     public enum Status {
