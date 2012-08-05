@@ -6,6 +6,7 @@ import com.threewaypicks.service.BetService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -65,9 +66,6 @@ public class BetController {
         bet.getPickList().removeAll( picksForRemove);
 
         if(!bindResult.hasErrors()){
-            for( Pick pick : bet.getPickList()){
-                pick.setStatus(Pick.Status.IN_PLAY);
-            }
             betService.addBet(bet);
             return "redirect:/";
         }
@@ -83,5 +81,17 @@ public class BetController {
         model.addAttribute("index",index);
         return "pickFormTag";
     }
+
+    /**
+     * View current in play bets page
+     */
+    @RequestMapping(value = {"","/"}, method = RequestMethod.GET)
+    public String viewInPlayBets(Model model) {
+        Page<Bet> result = betService.findInPlayBets();
+
+        model.addAttribute("betList", result.getContent());
+        return "bets";
+    }
+
 
 }

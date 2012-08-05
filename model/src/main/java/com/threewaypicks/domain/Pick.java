@@ -46,7 +46,6 @@ public class Pick {
     @NotNull
     private Status status;
 
-    @NotEmpty
     private String matchTime;
 
     public String getMatch() {

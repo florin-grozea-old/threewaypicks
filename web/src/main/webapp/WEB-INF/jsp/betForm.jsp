@@ -46,7 +46,7 @@
                             <form:option value="2">2</form:option>
                             <form:option value="3">3</form:option>
                             <form:option value="4">4</form:option>
-                            <form:option value="5">5</form:option>
+                            <form:option value="5" selected="selected">5</form:option>
                             <form:option value="6">6</form:option>
                             <form:option value="7">7</form:option>
                             <form:option value="8">8</form:option>
@@ -62,10 +62,8 @@
         </div>
     </div><%--bet header--%>
 
-   <%--<c:out value="${fn:length(bet.pickList)}"/>--%>
+
    <c:forEach var="pick"  varStatus="count" items="${bet.pickList}">
-       <%--<c:out value="${bet.pickList[count.index].league}"/>
-       <c:out value="${count.index}"/>--%>
        <threewaypicks:pickForm pickContainer="pickList" index="${count.index}"/>
    </c:forEach>
 

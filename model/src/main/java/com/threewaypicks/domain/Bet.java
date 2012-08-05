@@ -38,7 +38,30 @@ public class Bet {
     @NotNull @Min(1) @Max(10)
     private Integer stake;
 
+
     private Date date;
+
+
+    private Pick.Status status;
+
+
+    private Double finalOdds;
+
+    public Pick.Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Pick.Status status) {
+        this.status = status;
+    }
+
+    public Double getFinalOdds() {
+        return finalOdds;
+    }
+
+    public void setFinalOdds(Double finalOdds) {
+        this.finalOdds = finalOdds;
+    }
 
     public String getId() {
         return id;
