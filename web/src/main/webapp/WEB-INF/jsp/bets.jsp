@@ -31,7 +31,7 @@
 
         <tr style="background-color:#D9EDF7">
             <td class="span1">${count.index + 1}</td>
-            <td colspan="4" >&nbsp;&nbsp;&nbsp; <strong>Date:</strong> <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${bet.date}"/> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<strong>Bookmaker:</strong> ${bet.bookMaker}</td>
+            <td colspan="4" ><strong>Date:</strong> <fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${bet.date}"/> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<strong>Bookmaker:</strong> ${bet.bookMaker}</td>
             <td class="span1"><fmt:formatNumber type="number" maxFractionDigits="2" value="${bet.finalOdds}"/></td>
             <td class="span1">${bet.status}</td>
             <td class="span1">${bet.user}</td></tr>

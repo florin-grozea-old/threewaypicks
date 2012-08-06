@@ -47,7 +47,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a href="${pageContext.request.contextPath}" class="brand">Three Way Picks</a>
+            <a href="${pageContext.request.contextPath}/" class="brand">Three Way Picks</a>
 
             <div class="nav-collapse">
                 <ul class="nav">
