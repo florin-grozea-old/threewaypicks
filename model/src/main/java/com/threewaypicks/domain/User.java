@@ -1,7 +1,14 @@
 package com.threewaypicks.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,12 +21,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class User {
 
+
     @Id
     private String id;
 
+    @NotEmpty @Min(5) @Max(15)
     private String userName;
+
+    @Min(5) @Max(20)
     private String password;
-    private String role;
+
+    private List<String> roles;
+
+    @Email @NotEmpty
+    private String email;
 
 
 
@@ -47,11 +62,19 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

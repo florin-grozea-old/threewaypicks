@@ -36,7 +36,7 @@
 
 <body>
 
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
@@ -44,12 +44,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </a>
             <a href="${pageContext.request.contextPath}/" class="brand">Three Way Picks</a>
 
-            <div class="nav-collapse">
+            <div class="nav-collapse in collapse" style="height: auto;">
                 <ul class="nav">
                     <li><a href="${pageContext.request.contextPath}/bets">Bets</a></li>
                     <li><a href="#Previews">Previews</a></li>

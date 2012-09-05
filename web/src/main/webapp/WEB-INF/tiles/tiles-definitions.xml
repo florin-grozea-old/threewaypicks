@@ -12,7 +12,11 @@
     <definition name="pickFormTag" template="/WEB-INF/jsp/pickFormTag.jsp">
     </definition>
 
-	<definition name="bets" extends="template-main">
+    <definition name="adminOptions" extends="template-main">
+        <put-attribute name="body" value="/WEB-INF/jsp/adminOptions.jsp" />
+    </definition>
+
+    <definition name="bets" extends="template-main">
 		<put-attribute name="body" value="/WEB-INF/jsp/bets.jsp" />
 	</definition>
 
