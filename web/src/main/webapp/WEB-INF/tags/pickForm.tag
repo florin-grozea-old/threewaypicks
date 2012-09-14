@@ -53,7 +53,7 @@
                     <form:errors path="${pickContainer}[${index}].matchTime" class="help-inline"/>
                 </div>
             </div>
-            <div class="span1 offset8">
+            <div class="span2 offset8">
                 <a class="btn jsAddPick" href="#">+</a>
                 <a class="btn btn-danger jsRemovePick" href="#">x</a>
             </div>

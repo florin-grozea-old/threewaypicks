@@ -12,10 +12,6 @@
     <definition name="pickFormTag" template="/WEB-INF/jsp/pickFormTag.jsp">
     </definition>
 
-    <definition name="adminOptions" extends="template-main">
-        <put-attribute name="body" value="/WEB-INF/jsp/adminOptions.jsp" />
-    </definition>
-
     <definition name="bets" extends="template-main">
 		<put-attribute name="body" value="/WEB-INF/jsp/bets.jsp" />
 	</definition>
@@ -26,6 +22,14 @@
 
     <definition name="mainPage" extends="template-main">
         <put-attribute name="body" value="/WEB-INF/jsp/mainPage.jsp" />
+    </definition>
+
+    <!--admin users pages-->
+    <definition name="users" extends="template-main">
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/users/users.jsp" />
+    </definition>
+    <definition name="userForm" extends="template-main">
+        <put-attribute name="body" value="/WEB-INF/jsp/admin/users/userForm.jsp" />
     </definition>
 
 </tiles-definitions>

@@ -62,7 +62,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="${pageContext.request.contextPath}/bets/betForm">Place Bet</a></li>
-                            <li><a href="${pageContext.request.contextPath}/bets">Update Bets</a></li>
+                            <li><a href="${pageContext.request.contextPath}">Update Bets</a></li>
+                            <li><a href="${pageContext.request.contextPath}">Status & History</a></li>
+                            <li class="divider"></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/users">Users Management</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/bets">Bets Management</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/>logs">Logs</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Log out</a></li>
                         </ul>
