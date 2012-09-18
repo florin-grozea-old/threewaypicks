@@ -25,8 +25,8 @@ import java.util.List;
  * User: flgor
  * Date: 8/6/12
  * Time: 8:54 PM
- * To change this template use File | Settings | File Templates.
  */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {

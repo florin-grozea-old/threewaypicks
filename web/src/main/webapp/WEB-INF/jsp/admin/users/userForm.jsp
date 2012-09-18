@@ -8,26 +8,19 @@
 
         <div class="pull-right">
             <button type="submit" class="btn btn-primary btn-large">Save</button>
-            <button class="btn btn-large">Cancel</button>
+            <a class="btn btn-large" href="${pageContext.request.contextPath}/admin/users">Cancel</a>
         </div>
 
         <div class="span10 offset1">
-            User form...
+            May the force be with this one
         </div>
         <div class="span10 offset1">&nbsp</div>
 
     </div>
 
 
-    <%--Global errors--%>
-    <c:if test="${org.springframework.validation.BindingResult.user}==0">
-        <div class="alert alert-error fade in">
-            <a class="close" data-dismiss="alert" href="#">&times;</a>
-            <strong>Error!</strong> Best check yo self, you're not looking too good.
-        </div>
-    </c:if>
-
-    <form:errors />
+    <c:set var="globalError"><form:errors /></c:set>
+    <threewaypicks:globalError globalError="${globalError}"/>
 
     <%--bet header--%>
     <div class="row">
@@ -38,33 +31,42 @@
                     <div class="controls">
                         <form:input path="userName" type="text" class="span2" id="userName"/>
                         <form:errors path="userName" class="help-inline"/>
+                        <span class="btn btn-info" disabled="disabled" id="jsVerifyUserName">verify</span>
                     </div>
                 </div>
                 <div class="control-group span10">
                     <label class="control-label" for="password">Password</label>
                     <div class="controls">
-                        <form:input path="password" type="text" class="span4" id="password"/>
+                        <form:input path="password" type="password" class="span4" id="password"/>
                         <form:errors path="password" class="help-inline"/>
                     </div>
                 </div>
                 <div class="control-group span10">
                     <label class="control-label" for="checkPassword">Repeat Password</label>
                     <div class="controls">
-                        <form:input path="checkPassword" type="text" class="span4" id="checkPassword"/>
+                        <form:input path="checkPassword" type="password" class="span4" id="checkPassword"/>
                         <form:errors path="checkPassword" class="help-inline"/>
                     </div>
                 </div>
                 <div class="control-group span10">
                     <label class="control-label" for="email">Email</label>
                     <div class="controls">
-                        <form:input path="email" type="text" class="span3" id="email"/>
-                        <form:errors path="email" class="help-inline"/>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"></i></span>
+                            <form:input path="email" type="text" class="span3" id="email"/>
+                            <form:errors path="email" class="help-inline"/>
+                        </div>
+                        <span class="btn btn-info" disabled="disabled" id="jsVerifyEmail">verify</span>
+
                     </div>
                 </div>
                 <div class="control-group span10">
                     <label class="control-label" for="checkEmail">Repeat Email</label>
                     <div class="controls">
-                        <form:input path="checkEmail" type="text" class="span3" id="checkEmail"/>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"></i></span>
+                            <form:input path="checkEmail" type="text" class="span3" id="checkEmail"/>
+                        </div>
                         <form:errors path="checkEmail" class="help-inline"/>
                     </div>
                 </div>

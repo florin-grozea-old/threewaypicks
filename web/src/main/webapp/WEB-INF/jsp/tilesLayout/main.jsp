@@ -67,7 +67,7 @@
                             <li class="divider"></li>
                             <li><a href="${pageContext.request.contextPath}/admin/users">Users Management</a></li>
                             <li><a href="${pageContext.request.contextPath}/admin/bets">Bets Management</a></li>
-                            <li><a href="${pageContext.request.contextPath}/admin/>logs">Logs</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/logs">Logs</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Log out</a></li>
                         </ul>
