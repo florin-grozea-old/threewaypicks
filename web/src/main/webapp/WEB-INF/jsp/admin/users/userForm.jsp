@@ -18,6 +18,17 @@
 
     </div>
 
+
+    <%--Global errors--%>
+    <c:if test="${org.springframework.validation.BindingResult.user}==0">
+        <div class="alert alert-error fade in">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <strong>Error!</strong> Best check yo self, you're not looking too good.
+        </div>
+    </c:if>
+
+    <form:errors />
+
     <%--bet header--%>
     <div class="row">
         <div class="span10 well offset1">
@@ -37,10 +48,10 @@
                     </div>
                 </div>
                 <div class="control-group span10">
-                    <label class="control-label" for="rPassword">Repeat Password</label>
+                    <label class="control-label" for="checkPassword">Repeat Password</label>
                     <div class="controls">
-                        <form:input path="rPassword" type="text" class="span4" id="rPassword"/>
-                        <form:errors path="rPassword" class="help-inline"/>
+                        <form:input path="checkPassword" type="text" class="span4" id="checkPassword"/>
+                        <form:errors path="checkPassword" class="help-inline"/>
                     </div>
                 </div>
                 <div class="control-group span10">
@@ -51,10 +62,10 @@
                     </div>
                 </div>
                 <div class="control-group span10">
-                    <label class="control-label" for="rEmail">Repeat Email</label>
+                    <label class="control-label" for="checkEmail">Repeat Email</label>
                     <div class="controls">
-                        <form:input path="rEmail" type="text" class="span3" id="rEmail"/>
-                        <form:errors path="rEmail" class="help-inline"/>
+                        <form:input path="checkEmail" type="text" class="span3" id="checkEmail"/>
+                        <form:errors path="checkEmail" class="help-inline"/>
                     </div>
                 </div>
                 <div class="control-group span10">
@@ -62,9 +73,9 @@
                     <div class="controls">
                         <form:input path="formRoles" type="text" class="span4" id="formRoles"/>
                         <form:errors path="formRoles" class="help-inline"/>
+                        <span class="help-block">TRIAL TIPSTER ADMIN</span>
                     </div>
                 </div>
-
             </fieldset>
         </div>
     </div><%--bet header--%>

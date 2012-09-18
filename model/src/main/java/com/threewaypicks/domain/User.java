@@ -1,16 +1,19 @@
 package com.threewaypicks.domain;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +25,9 @@ import java.util.List;
 
 @Document
 public class User {
+    protected static Logger logger = Logger.getLogger(User.class);
+
+
     public enum Role {
         TRIAL, TIPSTER, ADMIN, SUPER_ADMIN
     }
@@ -29,24 +35,28 @@ public class User {
     @Id
     private String id;
 
-    @NotEmpty @Min(5) @Max(15)
+    @Length(max = 15, min = 5)
     @Indexed(unique = true)
+    @NotEmpty
+    @NotNull
     private String userName;
 
-    @Min(5) @Max(20)
+    @Length(max = 30, min = 6)
     private String password;
 
     @Transient
-    private String rPassword;
+    private String checkPassword;
 
-    private List<Role> roles;
+    private Set<Role> roles = new HashSet<Role>();
 
-    @Email @NotEmpty
+    @Email
     @Indexed(unique = true)
+    @NotEmpty
+    @NotNull
     private String email;
 
     @Transient
-    private String rEmail;
+    private String checkEmail;
 
     @Transient
     private String formRoles;
@@ -67,21 +77,6 @@ public class User {
         this.id = id;
     }
 
-    public String getrPassword() {
-        return rPassword;
-    }
-
-    public void setrPassword(String rPassword) {
-        this.rPassword = rPassword;
-    }
-
-    public String getrEmail() {
-        return rEmail;
-    }
-
-    public void setrEmail(String rEmail) {
-        this.rEmail = rEmail;
-    }
 
     public String getUserName() {
         return userName;
@@ -89,6 +84,22 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -99,19 +110,46 @@ public class User {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public String getCheckPassword() {
+        return checkPassword;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setCheckPassword(String checkPassword) {
+        this.checkPassword = checkPassword;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCheckEmail() {
+        return checkEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCheckEmail(String checkEmail) {
+        this.checkEmail = checkEmail;
+    }
+
+    public boolean addRole(Role role, User user) {
+        // ToDo: check if the current user can add that role
+        this.roles.add(role);
+        return true;
+    }
+
+    public boolean changeRoles(String roles, User user) {
+        // ToDo: check if the current user can add that role
+        this.roles = new HashSet<Role>();
+        if (StringUtils.isEmpty(roles)) {
+            this.roles.add(User.Role.TRIAL);
+            return true;
+        } else {
+            String[] formRoles = roles.split(" ");
+            for (String role : formRoles) {
+                try {
+                    User.Role userRole = User.Role.valueOf(role);
+                    this.roles.add(userRole);
+                } catch (Exception e) {
+                    logger.error( "role error: ", e);
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

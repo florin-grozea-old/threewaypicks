@@ -5,8 +5,6 @@ import com.threewaypicks.domain.Bet;
 import com.threewaypicks.domain.Pick;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,35 +33,12 @@ public class BetService {
         bet.setFinalOdds( finalOdds );
         bet.setDate( new Date());
         bet.setStatus( Pick.Status.IN_PLAY);
+        bet.setId(null);
         return betDAO.save(bet);
     }
 
     public Page<Bet> findInPlayBets(){
-        // ToDo create a page Class
-
-        Pageable page = new Pageable() {
-            @Override
-            public int getPageNumber() {
-                return 1;
-            }
-
-            @Override
-            public int getPageSize() {
-                return 100;
-            }
-
-            @Override
-            public int getOffset() {
-                return 0;
-            }
-
-            @Override
-            public Sort getSort() {
-                return null;
-            }
-        };
-
-        return betDAO.findByStatus(Pick.Status.IN_PLAY, page);
+        return betDAO.findByStatus(Pick.Status.IN_PLAY, new PageRequest(1,100,0,null));
     }
 
 }
