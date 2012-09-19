@@ -32,7 +32,7 @@
             <td class="span2">${user.email}</td>
             <td class="span2">${user.roles}</td>
             <td class="span1">
-                <threewaypicks:actionLabel link="#" ahrefClasses="icon-pencil icon-white" iconClasses=" " text="edit"/>
+                <threewaypicks:actionLabel link="#" spanClasses="label-info" iconClasses="icon-pencil icon-white" text="edit"/>
             </td>
         </tr>
     </c:forEach>
